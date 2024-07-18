@@ -10,19 +10,25 @@
       @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
     </style>
     <script type="module" crossorigin src="/goit-js-hw-12/commonHelpers.js"></script>
-    <link rel="modulepreload" crossorigin href="/goit-js-hw-12/assets/vendor-57a05cc6.js">
-    <link rel="stylesheet" href="/goit-js-hw-12/assets/vendor-5770d452.css">
-    <link rel="stylesheet" href="/goit-js-hw-12/assets/index-65d4a38f.css">
+    <link rel="modulepreload" crossorigin href="/goit-js-hw-12/assets/vendor-b3e1c2a1.js">
+    <link rel="stylesheet" href="/goit-js-hw-12/assets/vendor-8dc12071.css">
+    <link rel="stylesheet" href="/goit-js-hw-12/assets/index-58ee3d12.css">
   </head>
   <body>
     <form class="form">
       <label class="form-label"
-        ><input class="form-input" type="text" placeholder="Search images..."
+        ><input
+          class="form-input"
+          name="input"
+          type="text"
+          placeholder="Search images..."
       /></label>
       <button type="submit" class="form-button">Search</button>
     </form>
     <div class="loader"></div>
     <ul class="img-list"></ul>
+    <button type="button" class="load-button">Load more</button>
+    <p class="load-text">Loading images, please wait...</p>
     
   </body>
 </html>
