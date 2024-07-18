@@ -1,7 +1,12 @@
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
+import { list } from '../main';
+
 const downloaderContainer = document.querySelector('.loader');
+const lightbox = new SimpleLightbox('.img-card a');
 
 function createMarkUp(arr) {
-  return arr
+  const markup = arr
     .map(
       ({
         webformatURL: img,
@@ -35,6 +40,9 @@ function createMarkUp(arr) {
       </li>`
     )
     .join('');
+
+  list.insertAdjacentHTML('beforeend', markup);
+  lightbox.refresh();
 }
 
 function loaderVisibly() {
@@ -45,4 +53,23 @@ function loaderHidden() {
   downloaderContainer.style.visibility = 'hidden';
 }
 
-export { createMarkUp, loaderVisibly, loaderHidden };
+function btnVisibly(btn) {
+  btn.style.display = 'flex';
+}
+
+function textVisibly(txt) {
+  txt.style.display = 'block';
+}
+
+function elementHidden(el) {
+  el.style.display = 'none';
+}
+
+export {
+  createMarkUp,
+  loaderVisibly,
+  loaderHidden,
+  elementHidden,
+  btnVisibly,
+  textVisibly,
+};

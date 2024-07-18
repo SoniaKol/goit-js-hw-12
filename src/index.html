@@ -13,12 +13,18 @@
   <body>
     <form class="form">
       <label class="form-label"
-        ><input class="form-input" type="text" placeholder="Search images..."
+        ><input
+          class="form-input"
+          name="input"
+          type="text"
+          placeholder="Search images..."
       /></label>
       <button type="submit" class="form-button">Search</button>
     </form>
     <div class="loader"></div>
     <ul class="img-list"></ul>
+    <button type="button" class="load-button">Load more</button>
+    <p class="load-text">Loading images, please wait...</p>
     <script type="module" src="./main.js"></script>
   </body>
 </html>

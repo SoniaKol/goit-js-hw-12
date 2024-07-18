@@ -1,44 +1,26 @@
-import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 import axios from 'axios';
-import { list, form } from '../main.js';
-import {
-  createMarkUp,
-  loaderHidden,
-  loaderVisibly,
-} from './render-functions.js';
+import { button, text } from '../main.js';
+import { loaderHidden, elementHidden } from './render-functions.js';
 
-async function searchImg(request) {
-  list.innerHTML = '';
-  loaderVisibly();
+const BASE_URL = 'https://pixabay.com/api/';
+const KEY = '44792163-757e44859b12a96dc64963414';
 
-  const lightbox = new SimpleLightbox('.img-card a');
-
-  axios.defaults.baseURL = 'https://pixabay.com/api/';
-
-  const searchParams = new URLSearchParams({
-    key: '44792163-757e44859b12a96dc64963414',
-    q: request,
-    image_type: 'photo',
-    orientation: 'horizontal',
-    safesearch: true,
-  });
-
-  const response = (await axios.get(`?${searchParams}`)).data;
-
-  try {
-    if (checkResult(response.hits)) {
-      loaderHidden();
-      list.innerHTML = createMarkUp(response.hits);
-      lightbox.refresh();
-    }
-  } catch (err) {
-    console.log(err);
-  } finally {
-    form.reset();
-  }
+async function getImg({ q = '', page = 1, per_page = 15 } = {}) {
+  return (
+    await axios.get(BASE_URL, {
+      params: {
+        key: KEY,
+        q,
+        image_type: 'photo',
+        orientation: 'horizontal',
+        safesearch: true,
+        page,
+        per_page,
+      },
+    })
+  ).data;
 }
 
 function checkResult(arr) {
@@ -50,10 +32,12 @@ function checkResult(arr) {
       position: 'topRight',
     });
     loaderHidden();
+    elementHidden(button);
+    elementHidden(text);
     return;
   }
 
   return true;
 }
 
-export default searchImg;
+export { getImg, checkResult };
