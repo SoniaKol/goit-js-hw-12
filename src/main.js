@@ -36,7 +36,6 @@ async function formHandler(evt) {
   params.page = 1;
 
   params.q = evt.currentTarget.elements.input.value.trim();
-  console.log(params.q);
 
   if (!params.q) return;
 
@@ -44,8 +43,6 @@ async function formHandler(evt) {
 
   try {
     const { hits, totalHits } = await getImg(params);
-    console.log(hits);
-
     params.maxPage = Math.ceil(totalHits / params.per_page);
 
     if (checkResult(hits)) {
